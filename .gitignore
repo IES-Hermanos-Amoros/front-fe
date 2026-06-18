@@ -23,14 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-# Entorno y secretos — NUNCA subir
-.env
-.env.*
-*.env
-
-# Certificados SSL
-certs/
-
 # Archivos del sistema
 .fetch-client/
 api_test/
