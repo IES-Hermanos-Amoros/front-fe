@@ -1,0 +1,38 @@
+/*------------------------------------------------------------------
+# Footer
+------------------------------------------------------------------*/
+
+.footer {
+    padding: 20px 0;
+    font-size: 14px;
+    transition: all 0.3s;
+    border-top: 1px solid var(--footerBorder);
+}
+
+.footer .copyright {
+    text-align: center;
+    color: var(--footerText);
+}
+
+.footer .credits {
+    padding-top: 5px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--footerText);
+}
+
+.footer .legal-links {
+    padding-top: 8px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.footer .legal-links a {
+    color: var(--second);
+    text-decoration: none;
+}
+
+.footer .legal-links a:hover,
+.footer .legal-links a:focus-visible {
+    text-decoration: underline;
+}

@@ -1,0 +1,27 @@
+.dropdown-menu.profile {
+  background: var(--card-bg);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 10px;
+  padding: 8px 0;
+  min-width: 220px;
+  box-shadow: 0 10px 25px rgba(1,41,112,0.15);
+}
+
+.dropdown-menu.profile .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  color: var(--text-color);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.dropdown-menu.profile .dropdown-item:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+[data-bs-theme='dark'] .dropdown-menu.profile .dropdown-item:hover {
+  background: var(--second);
+}

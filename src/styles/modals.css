@@ -1,0 +1,47 @@
+/* Contenedor de los botones (SweetAlert2 usa esta clase) */
+.swal2-actions {
+  display: flex !important;
+  gap: 12px !important; /* Espacio real entre botones */
+  margin-top: 1.5rem !important;
+  justify-content: center !important;
+}
+
+.fctm-modal {
+  background: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--bs-border-color) !important;
+  padding: 20px !important;
+  animation: fctmFadeIn 0.25s ease;
+}
+
+.fctm-btn {
+  background: var(--primary) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 8px 20px !important; /* Un poco más de aire */
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fctm-btn:hover {
+  filter: brightness(0.9); /* Efecto hover genérico si var(--second) no carga */
+  background: var(--second) !important;
+}
+
+.fctm-btn-cancel {
+  background: #6c757d !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 8px 20px !important;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fctm-btn-cancel:hover {
+  background: #5a6268 !important;
+}

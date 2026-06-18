@@ -1,0 +1,246 @@
+/* ======================================================
+   REACT TABLE TANSTACK - FUSIÓN SIN COSTURAS
+   ====================================================== */
+
+.rt-card {
+  width: 100%;
+  overflow-x: auto;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  
+  /* Asegura que si algo se desborda en el renderizado no se coma la unión física */
+  display: block; 
+  margin-top: 0 !important;
+
+  /* Solo redondeamos la parte de abajo */
+  border-radius: 0 0 12px 12px; 
+  
+  /* Borde completo excepto el de arriba */
+  border: 1px solid var(--bs-border-color) !important;
+  border-top: none !important;
+
+  /* Eliminamos máscaras */
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  
+  /* Sombra unificada que envuelve todo el bloque */
+  box-shadow: 0 10px 30px rgba(1, 41, 112, 0.08);
+  transition: background-color 0.3s ease;
+}
+
+.rt-card-body {
+  padding: 1rem;
+}
+
+/* Ocultamos el título h1 repetido */
+.rt-card-body h1 {
+  display: none !important;
+}
+
+/* BUSCADOR */
+.searchInput {
+  margin-bottom: 16px;
+  padding: 6px 12px;
+  border-radius: 0.375rem;
+  border: 1px solid var(--bs-border-color);
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+  font-size: 0.875rem;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+.searchInput::placeholder {
+  color: #8a94a8;
+}
+
+/* TABLA */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  vertical-align: middle;
+  color: var(--text-color);
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  vertical-align: middle;
+}
+
+/* Columnas que NO deben partirse en varias líneas:
+   - CIF (empresas) y NIA (alumnos): ambas usan la key SAO_username
+   - Ciudad/Localidad del alumnado: SAO_student_city
+   - NIA en Gestión de F.E.: usa la key SAO_student_id (distinta de la de Alumnos) */
+.table th.col-SAO_username,
+.table td.col-SAO_username,
+.table th.col-SAO_student_city,
+.table td.col-SAO_student_city,
+.table th.col-SAO_student_id,
+.table td.col-SAO_student_id {
+  white-space: nowrap;
+}
+
+.table thead th {
+  background-color: var(--bs-gray-100);
+  color: var(--text-color);
+  font-weight: 600;
+  border-bottom: 2px solid var(--bs-border-color);
+}
+
+.table tbody tr {
+  border-bottom: 1px solid var(--bs-border-color);
+  transition: background-color 0.15s ease-in-out;
+}
+
+.table tbody tr:hover {
+  background-color: var(--bs-table-hover-bg);
+}
+
+/* FILAS SELECCIONADAS */
+.row-selected {
+  background-color: rgba(13, 110, 253, 0.1);
+}
+
+.card-selected {
+  border: 2px solid var(--second);
+}
+
+/* ROW COLLAPSE */
+.rowCollapseExpanded {
+  background-color: var(--bgcolor);
+  padding: 10px;
+  transition: all 0.3s ease-in-out;
+  border-top: 1px solid var(--bs-border-color);
+}
+
+.table td:first-child {
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--second);
+}
+
+/* MODO CARD (MÓVIL) */
+.cardsContainer {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.card {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-radius: 0.5rem;
+  padding: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+/* Cabecera de la tarjeta: campos clave siempre visibles + flecha de desplegar */
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.card-head-fields {
+  flex: 1 1 auto;
+  min-width: 0; /* permite que el texto largo se ajuste en vez de desbordar */
+}
+
+.card-toggle-icon {
+  flex: 0 0 auto;
+  color: var(--second);
+  font-size: 1.1rem;
+  line-height: 1.4;
+  transition: transform 0.2s ease;
+}
+
+/* Detalle desplegado: el resto de campos, sin límite de altura (no se corta nada) */
+.card-details {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--bs-border-color);
+}
+
+/* Cada campo: las cadenas largas (nombre, descripción...) parten de línea
+   en lugar de cortarse o provocar scroll horizontal */
+.card-field {
+  margin-bottom: 4px;
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.card-expanded {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+
+
+/* PAGINACIÓN */
+.pagination {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.pagination span {
+  font-size: 0.875rem;
+  color: var(--text-color);
+  margin: 0 0.5rem;
+}
+
+.pagination button {
+  background-color: transparent;
+  border: 1px solid var(--bs-border-color);
+  color: var(--text-color);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: var(--bs-gray-200);
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.pagination select {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--bs-border-color);
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+/* CHECKBOX */
+.table input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--second);
+}
+
+@media (max-width: 991.98px) {
+  .pagination {
+    justify-content: center;
+  }
+  .pagination button {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.4rem;
+  }
+}

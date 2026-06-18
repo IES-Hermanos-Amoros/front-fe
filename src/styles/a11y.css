@@ -1,0 +1,51 @@
+/*------------------------------------------------------------------
+# Mejoras de accesibilidad globales
+# Complementa el control de accesibilidad existente (index.css)
+------------------------------------------------------------------*/
+
+/* Enlace "Saltar al contenido principal": invisible hasta recibir foco */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 1rem;
+    z-index: 10001;
+    padding: 0.6rem 1.2rem;
+    background: var(--primary);
+    color: #ffffff;
+    border-radius: 0 0 8px 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+    top: 0;
+    outline: 3px solid var(--second);
+    outline-offset: 2px;
+    color: #ffffff;
+}
+
+/* Indicador de foco visible y consistente al navegar con teclado */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+    outline: 3px solid var(--second);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Respetar la preferencia del sistema de reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

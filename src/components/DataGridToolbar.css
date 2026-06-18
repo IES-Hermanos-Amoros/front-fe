@@ -1,0 +1,125 @@
+.dg-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 6px;
+  transition: background-color 0.3s, border-color 0.3s;
+  flex-wrap: wrap;
+}
+
+.dg-toolbar-left h2 {
+  margin: 0;
+  font-size: 18px;
+  color: var(--text-color);
+}
+
+.dg-toolbar-right {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.dg-toolbar-right .btn {
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  border-radius: 4px;
+  border: 1px solid var(--bs-border-color);
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dg-toolbar-right .btn:hover:not(:disabled) {
+  background-color: var(--bs-light);
+  border-color: var(--second);
+}
+
+/* Botones Excel/PDF */
+.dg-toolbar-right .btn-export {
+  background-color: var(--second);
+  color: white;
+  border: 1px solid var(--second);
+}
+
+.dg-toolbar-right .btn-export:hover:not(:disabled) {
+  background-color: white;
+  color: var(--second);
+  border-color: var(--second);
+}
+
+/* Botón eliminar global */
+.dg-toolbar-right .btn-delete {
+  background-color: #d9534f;
+  color: white;
+  border: 1px solid #d9534f;
+}
+
+.dg-toolbar-right .btn-delete:hover:not(:disabled) {
+  background-color: white;
+  color: #d9534f;
+  border-color: #d9534f;
+}
+
+/* Botón nuevo */
+.dg-toolbar-right .btn-new {
+  background-color: #198754;
+  color: white;
+  border: 1px solid #198754;
+}
+
+.dg-toolbar-right .btn-new:hover:not(:disabled) {
+  background-color: white;
+  color: #198754;
+  border-color: #198754;
+}
+
+/* Reset */
+.dg-toolbar-right .btn-reset {
+  background-color: var(--bs-light);
+  color: var(--text-color);
+  border: 1px solid var(--bs-border-color);
+}
+
+.dg-toolbar-right .btn-reset:hover:not(:disabled) {
+  background-color: var(--second);
+  color: white;
+}
+
+/* Disabled */
+.dg-toolbar-right .btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Inputs de filtros */
+.dg-toolbar-right select,
+.dg-toolbar-right input[type="date"],
+.dg-toolbar-right input[type="number"] {
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--bs-border-color);
+  font-size: 0.875rem;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  transition: all 0.3s;
+}
+
+.dg-toolbar-right .rangeFilter {
+  display: flex;
+  gap: 4px;
+}
+
+/* Responsive */
+@media (max-width: 767.98px) {
+  .dg-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

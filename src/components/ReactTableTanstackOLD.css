@@ -1,0 +1,76 @@
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  background-color: #f5f5f5;
+  padding: 8px;
+  text-align: left;
+  border-bottom: 2px solid #ccc;
+}
+
+.table td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.searchInput {
+  margin-bottom: 12px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+}
+
+.cardsContainer {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.card div {
+  margin-bottom: 4px;
+  transition: opacity 0.3s ease;
+}
+
+.rowCollapseExpanded {
+  background-color: #fafafa;
+  padding: 10px;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.pagination {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}

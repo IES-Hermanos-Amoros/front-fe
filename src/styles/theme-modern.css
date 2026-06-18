@@ -1,0 +1,1049 @@
+/*------------------------------------------------------------------
+# Tema visual moderno ("re-skin" sobre Bootstrap 5)
+#
+# - No cambia ninguna clase ni estructura: solo redefine variables y
+#   estilos de los componentes Bootstrap ya usados en la app.
+# - Respeta el modo claro/oscuro existente ([data-bs-theme]).
+# - Rollback: eliminar el import de este archivo en App.jsx.
+------------------------------------------------------------------*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    /* Paleta teal profundo: sobria y distintiva */
+    --tm-accent: #0f766e;
+    --tm-accent-hover: #115e59;
+    --tm-accent-soft: rgba(15, 118, 110, 0.12);
+    /* Armoniza los usos antiguos de --second (enlaces, focos) con la paleta */
+    --second: #0d9488;
+    --tm-radius: 10px;
+    /* Hairline: bordes nítidos de 1px y sombras mínimas */
+    --tm-card-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+    --tm-card-shadow-hover: 0 2px 10px rgba(16, 24, 40, 0.08);
+    /* Sombra de elevación real, solo para elementos flotantes (dropdowns) */
+    --tm-pop-shadow: 0 8px 24px rgba(16, 24, 40, 0.16);
+    /* Sidebar claro y sereno (entorno escolar) */
+    --tm-sidebar-bg: #f6f9f9;
+    --tm-sidebar-top: #ffffff;
+    --tm-sidebar-ink: #44565c;
+    --tm-sidebar-muted: #87989d;
+    --tm-sidebar-active: #0f766e;
+    --tm-sidebar-active-bg: rgba(15, 118, 110, 0.1);
+    --tm-sidebar-hover-bg: rgba(15, 118, 110, 0.06);
+    --tm-sidebar-logo: #15343a;
+    --tm-sidebar-shadow: rgba(15, 40, 45, 0.16);
+    /* Curvas de animación con intención (las nativas son demasiado blandas) */
+    --tm-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --tm-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+[data-bs-theme='dark'] {
+    --tm-accent: #14b8a6;
+    --tm-accent-hover: #2dd4bf;
+    --tm-accent-soft: rgba(20, 184, 166, 0.18);
+    --second: #2dd4bf;
+    --tm-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+    --tm-card-shadow-hover: 0 2px 10px rgba(0, 0, 0, 0.4);
+    --tm-pop-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    /* En oscuro: el sidebar comparte el mismo fondo que header y tarjetas (#2a3042)
+       para que no destaque más claro que el resto de la web */
+    --tm-sidebar-bg: #2a3042;
+    --tm-sidebar-top: #2a3042;
+    --tm-sidebar-ink: #becdd2;
+    --tm-sidebar-muted: #74898f;
+    --tm-sidebar-active: #5eead4;
+    --tm-sidebar-active-bg: rgba(94, 234, 212, 0.1);
+    --tm-sidebar-hover-bg: rgba(94, 234, 212, 0.06);
+    --tm-sidebar-logo: #eef4f5;
+    --tm-sidebar-shadow: rgba(0, 0, 0, 0.45);
+}
+
+/* ============ Tipografía ============ */
+body {
+    font-family: 'Inter', 'Open Sans', system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.011em;
+}
+
+h1, h2, h3, h4, h5, h6,
+.card-title {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+/* ============ Tarjetas ============ */
+.card {
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--tm-radius);
+    box-shadow: var(--tm-card-shadow);
+    transition: box-shadow 0.25s ease;
+}
+
+.card:hover {
+    box-shadow: var(--tm-card-shadow-hover);
+}
+
+/* ============ Botones ============ */
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.2s ease, border-color 0.2s ease,
+        box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--tm-accent);
+    --bs-btn-border-color: var(--tm-accent);
+    --bs-btn-hover-bg: var(--tm-accent-hover);
+    --bs-btn-hover-border-color: var(--tm-accent-hover);
+    --bs-btn-active-bg: var(--tm-accent-hover);
+    --bs-btn-active-border-color: var(--tm-accent-hover);
+    --bs-btn-disabled-bg: var(--tm-accent);
+    --bs-btn-disabled-border-color: var(--tm-accent);
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--tm-accent);
+    --bs-btn-border-color: var(--tm-accent);
+    --bs-btn-hover-bg: var(--tm-accent);
+    --bs-btn-hover-border-color: var(--tm-accent);
+    --bs-btn-active-bg: var(--tm-accent);
+    --bs-btn-active-border-color: var(--tm-accent);
+}
+
+/* ============ Formularios ============ */
+.form-control,
+.form-select {
+    border-radius: 8px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--tm-accent);
+    box-shadow: 0 0 0 4px var(--tm-accent-soft);
+}
+
+.form-check-input:checked {
+    background-color: var(--tm-accent);
+    border-color: var(--tm-accent);
+}
+
+/* ============ Menús desplegables ============ */
+.dropdown-menu {
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--tm-radius);
+    box-shadow: var(--tm-pop-shadow);
+    padding: 0.4rem;
+}
+
+.dropdown-item {
+    border-radius: 6px;
+    padding: 0.45rem 0.75rem;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus-visible {
+    background-color: var(--tm-accent-soft);
+}
+
+.dropdown-item.active {
+    background-color: var(--tm-accent);
+}
+
+/* ============ Tablas ============ */
+.table thead th {
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+}
+
+/* ============ Insignias y paginación ============ */
+.badge {
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.pagination {
+    --bs-pagination-active-bg: var(--tm-accent);
+    --bs-pagination-active-border-color: var(--tm-accent);
+    --bs-pagination-color: var(--tm-accent);
+    --bs-pagination-hover-color: var(--tm-accent-hover);
+}
+
+/* ============ Barra lateral ============ */
+.sidebar .nav-link {
+    border-radius: 8px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar .nav-link:hover {
+    background-color: var(--tm-accent-soft);
+}
+
+/* ============ Cabecera superior ============ */
+/* Sin backdrop-filter: crearía un containing block y rompería el position:fixed
+   del botón de accesibilidad, que vive dentro del header. */
+#header.header {
+    background-color: var(--header-bg);
+    box-shadow: none;
+    border-bottom: 1px solid var(--bs-border-color);
+}
+
+/* ============ Sidebar "midnight" ============ */
+/* Selectores con #sidebar para ganar a sideBar.css independientemente del
+   orden de carga. El alto contraste (a11y) sigue ganando con sus !important. */
+#sidebar.sidebar {
+    background: linear-gradient(180deg, var(--tm-sidebar-top) 0%, var(--tm-sidebar-bg) 45%);
+    box-shadow: none;
+    border-right: 1px solid var(--bs-border-color);
+    scrollbar-color: var(--bs-border-color) transparent;
+    padding: 0 16px 24px;
+    /* Full-height: la marca vive aquí, el header empieza a su derecha */
+    top: 0;
+    z-index: 998;
+}
+
+/* Marca dentro del sidebar */
+#sidebar .sidebar-brand {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding: 0 8px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--bs-border-color);
+}
+
+#sidebar .sidebar-brand .logo {
+    width: auto;
+}
+
+#sidebar .logo-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    margin-right: 10px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #14b8a6, #0f766e);
+    color: #ffffff;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(13, 148, 136, 0.4);
+}
+
+#sidebar .logo-accent {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--tm-sidebar-active);
+}
+
+#sidebar .logo-name {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--tm-sidebar-logo);
+}
+
+#sidebar .logo-badge {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: var(--tm-sidebar-active-bg);
+    color: var(--tm-sidebar-active);
+    margin-left: 4px;
+}
+
+/* En alto contraste el sidebar se vuelve blanco: el logo debe oscurecerse */
+body.a11y-high-contrast #sidebar .logo-name,
+body.a11y-high-contrast #sidebar .logo-accent {
+    color: #071428 !important;
+}
+
+body.a11y-high-contrast #sidebar .logo-badge {
+    background: #0b57d0 !important;
+    color: #ffffff !important;
+}
+
+#sidebar .sidebar-nav .nav-heading {
+    color: var(--tm-sidebar-muted);
+    letter-spacing: 0.14em;
+    margin: 18px 0 8px 12px;
+}
+
+#sidebar .sidebar-nav .nav-item {
+    margin-bottom: 2px;
+}
+
+#sidebar .sidebar-nav .nav-link,
+#sidebar .sidebar-nav .nav-link.collapsed {
+    color: var(--tm-sidebar-ink);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 11px 14px;
+    font-weight: 500;
+    transition: background-color 180ms var(--tm-ease-out),
+        color 180ms var(--tm-ease-out),
+        transform 180ms var(--tm-ease-out);
+}
+
+#sidebar .sidebar-nav .nav-link i,
+#sidebar .sidebar-nav .nav-link.collapsed i {
+    color: var(--tm-sidebar-muted);
+}
+
+#sidebar .sidebar-nav .nav-link:not(.collapsed) {
+    color: var(--tm-sidebar-active);
+    background: var(--tm-sidebar-active-bg);
+    box-shadow: inset 3px 0 0 var(--tm-sidebar-active);
+}
+
+#sidebar .sidebar-nav .nav-link:not(.collapsed) i {
+    color: var(--tm-sidebar-active);
+}
+
+#sidebar .sidebar-nav .nav-link:hover {
+    color: var(--tm-sidebar-active);
+    background: var(--tm-sidebar-hover-bg);
+    border-color: transparent;
+}
+
+#sidebar .sidebar-nav .nav-link:hover i {
+    color: var(--tm-sidebar-active);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    #sidebar .sidebar-nav .nav-link.collapsed:hover {
+        transform: translateX(3px);
+    }
+}
+
+#sidebar .sidebar-nav .nav-link:active {
+    transform: scale(0.98);
+}
+
+#sidebar .sidebar-nav .nav-content a {
+    color: var(--tm-sidebar-ink);
+}
+
+#sidebar .sidebar-nav .nav-content a i {
+    color: var(--tm-sidebar-muted);
+}
+
+#sidebar .sidebar-nav .nav-content a:hover,
+#sidebar .sidebar-nav .nav-content a.active {
+    color: var(--tm-sidebar-active);
+}
+
+/* ============ Densidad y precisión en listados ============ */
+#main .table {
+    font-variant-numeric: tabular-nums;
+}
+
+#main .table th,
+#main .table td {
+    padding: 0.55rem 0.75rem;
+}
+
+/* Las sombras difusas grandes sobran con el borde hairline */
+#main .react-table-toolbar,
+#main .rt-card {
+    box-shadow: none !important;
+}
+
+/* ============ Listados v2: toolbar compacto y tablas densas ============ */
+
+/* Toolbar en una sola fila: título | filtros | exportación */
+#main .react-table-toolbar {
+    padding: 12px 16px;
+    gap: 10px;
+}
+
+#main .react-table-toolbar .toolbar-title {
+    margin-right: auto;
+}
+
+#main .react-table-toolbar .toolbar-title h5 {
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+}
+
+#main .toolbar-filters .form-select {
+    min-width: 0;
+    max-width: 280px;
+    height: 36px;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 0.85rem;
+}
+
+/* Botones de exportación discretos: borde fino + punto de color */
+#main .toolbar-btn {
+    height: 36px;
+    padding: 0 14px;
+    background: var(--card-bg);
+    border: 1px solid var(--bs-border-color);
+    color: var(--text-color);
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+}
+
+#main .toolbar-btn::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+#main .excel-btn::before { background: #16a34a; }
+#main .pdf-btn::before { background: #dc2626; }
+
+#main .toolbar-btn:hover {
+    border-color: var(--tm-accent);
+    color: var(--tm-accent);
+    transform: none;
+    box-shadow: var(--tm-card-shadow);
+    filter: none;
+}
+
+/* Botón de limpiar filtros: fantasma, sin gritar */
+#main .rt-card .btn-outline-danger {
+    border-color: var(--bs-border-color);
+    color: var(--text-muted);
+}
+
+#main .rt-card .btn-outline-danger:hover {
+    border-color: #dc2626;
+    color: #dc2626;
+    background: transparent;
+}
+
+/* Cabeceras en una sola línea (adiós a los títulos partidos en 3) */
+#main .table thead th {
+    white-space: nowrap;
+}
+
+/* Iconos de ordenación solo al pasar el ratón (menos ruido visual) */
+#main .table thead th .bi-arrow-down-up {
+    opacity: 0;
+    transition: opacity 150ms ease;
+}
+
+#main .table thead th:hover .bi-arrow-down-up {
+    opacity: 0.55;
+}
+
+/* Zebra sutil: en tablas anchas ayuda a seguir la fila con la vista */
+#main .table tbody tr:nth-child(even) {
+    background-color: color-mix(in srgb, var(--text-color) 2.5%, transparent);
+}
+
+#main .table tbody tr:hover {
+    background-color: color-mix(in srgb, var(--text-color) 6%, transparent);
+}
+
+/* Celdas con contenido largo: que partan, no que empujen la tabla */
+#main .table td {
+    overflow-wrap: anywhere;
+    font-size: 0.875rem;
+}
+
+/* Chips compactos y contenidos (no hinchan las filas) */
+#main .table td .d-flex.flex-wrap {
+    max-width: 380px;
+}
+
+#main .table td .badge {
+    font-size: 0.68rem !important;
+    font-weight: 500;
+    padding: 3px 9px;
+}
+
+/* El selector "Mostrar N" no debe ocupar todo el ancho */
+#main .pagination select {
+    flex: none;
+    width: auto;
+}
+
+/* ============ Fondo del área principal ============ */
+#main {
+    background-image: radial-gradient(1100px 320px at 85% -80px, var(--tm-accent-soft), transparent);
+}
+
+/* ============ Sidebar: icono-only en desktop, oculto en móvil ============ */
+
+/* ── Desktop (≥ 1200px): colapsado = barra de iconos 68px ── */
+@media (min-width: 1200px) {
+    #sidebar.sidebar {
+        left: 0;
+        width: 68px;
+        min-width: 0; /* anula el min-width: 250px de layout.css */
+        overflow: hidden; /* clip del contenido desbordante */
+        transform: none;
+        transition: width 280ms var(--tm-ease-out) 120ms,
+                    box-shadow 280ms var(--tm-ease-out) 120ms,
+                    padding 280ms var(--tm-ease-out) 120ms;
+        will-change: width;
+    }
+
+    #sidebar.sidebar:hover,
+    #sidebar.sidebar:focus-within {
+        width: 300px;
+        overflow-y: auto; /* restaurar scroll vertical al expandir */
+        box-shadow: 10px 0 30px var(--tm-sidebar-shadow);
+        transition-delay: 0ms;
+    }
+
+    /* Push: base 68px, 300px al desplegar */
+    #main.main, #footer.footer {
+        margin-left: 68px;
+        transition: margin-left 280ms var(--tm-ease-out) 120ms;
+    }
+
+    #header.header {
+        padding-left: 82px;
+        transition: padding-left 280ms var(--tm-ease-out) 120ms;
+    }
+
+    body:has(#sidebar.sidebar:hover) #main.main,
+    body:has(#sidebar.sidebar:focus-within) #main.main,
+    body:has(#sidebar.sidebar:hover) #footer.footer,
+    body:has(#sidebar.sidebar:focus-within) #footer.footer {
+        margin-left: 300px;
+        transition-delay: 0ms;
+    }
+
+    body:has(#sidebar.sidebar:hover) #header.header,
+    body:has(#sidebar.sidebar:focus-within) #header.header {
+        padding-left: 320px;
+        transition-delay: 0ms;
+    }
+
+    /* Colapsado: padding mínimo para centrar iconos */
+    #sidebar.sidebar:not(:hover):not(:focus-within) {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    /* Logo centrado cuando está colapsado */
+    #sidebar.sidebar:not(:hover):not(:focus-within) .sidebar-brand {
+        justify-content: center;
+        padding: 0;
+    }
+    #sidebar.sidebar:not(:hover):not(:focus-within) .sidebar-brand .logo-mark {
+        margin-right: 0;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    /* Subapartados (nav-content): ocultos en colapsado, no son usables en 68px */
+    #sidebar.sidebar:not(:hover):not(:focus-within) .sidebar-nav .nav-content {
+        display: none !important;
+    }
+
+    /* Iconos de nav centrados y más grandes */
+    #sidebar.sidebar:not(:hover):not(:focus-within) .sidebar-nav .nav-link,
+    #sidebar.sidebar:not(:hover):not(:focus-within) .sidebar-nav .nav-link.collapsed {
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #sidebar.sidebar:not(:hover):not(:focus-within) .sidebar-nav .nav-link i {
+        margin-right: 0;
+        font-size: 20px;
+    }
+
+    /* Texto oculto en colapsado — max-width:0 para que no empuje al icono */
+    /* logo-text: ocultar el contenedor entero para que el logo-mark se centre */
+    #sidebar.sidebar:not(:hover):not(:focus-within) .sidebar-brand .logo-text {
+        max-width: 0;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+    }
+    #sidebar.sidebar:not(:hover):not(:focus-within) .sidebar-nav .nav-heading {
+        opacity: 0;
+        pointer-events: none;
+    }
+    /* El chevron: sacarlo del flujo y anular el ms-auto de Bootstrap (!important necesario) */
+    #sidebar.sidebar:not(:hover):not(:focus-within) .sidebar-nav .nav-link .bi-chevron-down {
+        width: 0;
+        overflow: hidden;
+        opacity: 0;
+        margin: 0 !important;
+        pointer-events: none;
+    }
+    #sidebar.sidebar:not(:hover):not(:focus-within) .sidebar-nav .nav-link span {
+        max-width: 0;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* Transición suave del texto al desplegar/replegar */
+    #sidebar .sidebar-brand .logo-text {
+        transition: max-width 280ms var(--tm-ease-out), opacity 200ms ease;
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    #sidebar .sidebar-nav .nav-heading,
+    #sidebar .sidebar-nav .nav-link .bi-chevron-down {
+        transition: opacity 150ms ease;
+        white-space: nowrap;
+    }
+    #sidebar .sidebar-nav .nav-link span {
+        transition: max-width 280ms var(--tm-ease-out), opacity 200ms ease;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 200px;
+    }
+}
+
+/* ── Móvil / tablet (< 1200px): completamente oculto, solo se abre con botón ── */
+@media (max-width: 1199px) {
+    #sidebar.sidebar {
+        left: 0;
+        width: 300px;
+        transform: translateX(-100%);
+        transition: transform 260ms var(--tm-ease-out);
+        will-change: transform;
+    }
+
+    #main.main, #footer.footer {
+        margin-left: 0 !important;
+    }
+
+    #header.header {
+        padding-left: 20px;
+    }
+
+    .sidebar-mobile-open #sidebar.sidebar {
+        transform: translateX(0);
+        box-shadow: 4px 0 32px rgba(0, 0, 0, 0.25);
+        transition-delay: 0ms;
+    }
+
+    .sidebar-mobile-open .tm-sidebar-overlay {
+        display: block;
+    }
+}
+
+/* ============ Título de página ============ */
+.pagetitle {
+    margin-bottom: 1.1rem;
+}
+
+.pagetitle h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+}
+
+.pagetitle .breadcrumb {
+    margin-top: 2px;
+    font-size: 0.8rem;
+}
+
+.pagetitle .breadcrumb-item,
+.pagetitle .breadcrumb-item a {
+    color: var(--text-muted);
+    text-decoration: none;
+}
+
+.pagetitle .breadcrumb-item.active {
+    color: var(--tm-accent);
+    font-weight: 500;
+}
+
+/* ============ Menú lateral ============ */
+.sidebar-nav .nav-heading {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+}
+
+/* Enlace activo: fondo acento + barra lateral (inset para no mover el layout) */
+.sidebar-nav .nav-link:not(.collapsed) {
+    background: var(--tm-accent-soft);
+    color: var(--tm-accent);
+    box-shadow: inset 3px 0 0 var(--tm-accent);
+}
+
+.sidebar-nav .nav-link:not(.collapsed) i {
+    color: var(--tm-accent);
+}
+
+.sidebar-nav .nav-link:hover {
+    background: var(--tm-accent-soft);
+    color: var(--tm-accent);
+}
+
+.sidebar-nav .nav-link:hover i {
+    color: var(--tm-accent);
+}
+
+.sidebar-nav .nav-content a.active {
+    color: var(--tm-accent);
+    font-weight: 600;
+}
+
+/* ============ Listados (toolbar + tabla TanStack) ============ */
+.searchInput {
+    border-radius: 999px;
+    padding: 8px 18px;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: var(--tm-accent);
+    box-shadow: 0 0 0 4px var(--tm-accent-soft);
+}
+
+/* Cabecera sobria: sin bloque de color, solo tipografía y un divisor firme */
+#main .table thead th {
+    background-color: transparent !important;
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-bottom: 2px solid var(--bs-border-color);
+    border-radius: 0;
+}
+
+/* Hover neutro, no de color */
+#main .table tbody tr:hover {
+    background-color: color-mix(in srgb, var(--text-color) 5%, transparent);
+}
+
+/* La primera columna deja de ir en color de acento */
+#main .table td:first-child {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+/* Botones de exportación del toolbar */
+.toolbar-btn {
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.toolbar-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(16, 24, 40, 0.18);
+    filter: brightness(1.05);
+}
+
+.toolbar-btn:active {
+    transform: translateY(0);
+}
+
+/* Paginación propia de los listados (botones ◀ ▶ y selector) */
+.pagination button {
+    min-width: 34px;
+    height: 34px;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 8px;
+    background: var(--card-bg);
+    color: var(--text-color);
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+    background: var(--tm-accent);
+    border-color: var(--tm-accent);
+    color: #ffffff;
+}
+
+.pagination button:disabled {
+    opacity: 0.35;
+}
+
+.pagination select {
+    height: 34px;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 8px;
+    background: var(--card-bg);
+    color: var(--text-color);
+    padding: 0 8px;
+}
+
+/* ============ Fichas de detalle (Show) ============ */
+.show-header h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.card-header {
+    background: transparent;
+    font-weight: 600;
+    border-bottom: 1px solid var(--bs-border-color);
+}
+
+/* Campos en modo lectura: se distinguen de los editables */
+.form-control[readonly]:not(.auth-input),
+.form-select:disabled {
+    background-color: var(--bgcolor);
+    cursor: default;
+}
+
+.form-control[readonly]:not(.auth-input):focus {
+    border-color: var(--bs-border-color);
+    box-shadow: none;
+}
+
+/* ============ Login (auth) ============ */
+/* Fondo midnight coherente con el sidebar: una sola identidad */
+.auth-wrapper {
+    background:
+        radial-gradient(900px 600px at 82% 18%, rgba(94, 234, 212, 0.18), transparent 70%),
+        linear-gradient(160deg, #06181d 0%, #0c2f33 55%, #0f766e 140%);
+}
+
+.auth-card {
+    border-radius: 16px;
+    box-shadow: 0 24px 80px rgba(4, 8, 40, 0.45);
+}
+
+.auth-header .auth-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 74px;
+    height: 74px;
+    border-radius: 20px;
+    background: var(--tm-accent-soft);
+    color: var(--tm-accent);
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.auth-title {
+    font-family: 'Inter', 'Nunito', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+.auth-subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 4px 0 0;
+}
+
+.auth-input {
+    height: 46px;
+    border-radius: 10px;
+}
+
+.auth-input:focus {
+    border-color: var(--tm-accent);
+    box-shadow: 0 0 0 4px var(--tm-accent-soft);
+    outline: none;
+}
+
+.auth-btn {
+    height: 46px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--tm-accent), var(--tm-accent-hover));
+    letter-spacing: 0.01em;
+}
+
+.auth-btn:hover {
+    background: linear-gradient(135deg, var(--tm-accent-hover), var(--tm-accent));
+    box-shadow: 0 6px 20px rgba(15, 118, 110, 0.45);
+    transform: translateY(-1px);
+}
+
+.auth-btn:disabled {
+    opacity: 0.75;
+    transform: none;
+}
+
+.auth-links a {
+    color: var(--tm-accent);
+}
+
+/* Selector de idioma sobre el fondo oscuro del login: visible de verdad */
+.auth-wrapper .language-selector .dropdown-toggle {
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+}
+
+.auth-wrapper .language-selector .dropdown-toggle:hover,
+.auth-wrapper .language-selector .dropdown-toggle:focus-visible {
+    background: rgba(255, 255, 255, 0.26);
+    border-color: rgba(255, 255, 255, 0.6);
+    color: #ffffff;
+}
+
+/* ============ Botón flotante de accesibilidad ============ */
+.dropdown.accessibility-control .dropdown-toggle {
+    background-color: var(--tm-accent);
+}
+
+.dropdown.accessibility-control .dropdown-toggle:hover {
+    background-color: var(--tm-accent-hover);
+}
+
+/* ============ Animaciones ============ */
+/* Sutiles, <320ms, solo transform/opacity. El bloque prefers-reduced-motion
+   de a11y.css las anula automáticamente para quien lo pida. */
+
+@keyframes tm-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes tm-pop {
+    from {
+        opacity: 0;
+        transform: scale(0.96) translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Entrada del contenido al navegar entre vistas */
+#main .pagetitle,
+#main .show-header,
+#main .react-table-toolbar,
+#main .rt-card,
+#main .card {
+    animation: tm-fade-up 300ms var(--tm-ease-out) both;
+}
+
+#main .react-table-toolbar {
+    animation-delay: 40ms;
+}
+
+#main .rt-card {
+    animation-delay: 80ms;
+}
+
+/* Menús desplegables: aparecen con un "pop" desde su origen */
+.dropdown-menu.show {
+    animation: tm-pop 160ms var(--tm-ease-out);
+    transform-origin: top right;
+}
+
+/* El menú del botón de accesibilidad abre hacia arriba */
+.accessibility-control .dropdown-menu.show {
+    transform-origin: bottom right;
+}
+
+/* ============ Barra de desplazamiento ============ */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bs-border-color);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* ============ Botón menú móvil y overlay ============ */
+
+.tm-mobile-menu-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    padding: 0 12px 0 4px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.tm-mobile-menu-btn:hover {
+    color: var(--tm-accent);
+}
+
+.tm-sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 995;
+    cursor: pointer;
+}
+
+/* Toolbar: a partir de 768px, los botones de export se apilan si no caben */
+@media (max-width: 768px) {
+    #main .react-table-toolbar {
+        flex-wrap: wrap;
+    }
+
+    #main .react-table-toolbar .toolbar-title {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    #main .toolbar-export-buttons {
+        margin-left: auto;
+    }
+
+    /* Tabla con scroll horizontal en móvil */
+    #main .rt-card .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* ======================================================
+   FICHAS DE DETALLE: 2 columnas en escritorio
+   Evita que campos cortos (NIA, ID, fechas...) ocupen
+   todo el ancho y obliguen a un scroll vertical enorme.
+   Se aplica a ShowReadonlyForm y ShowEditableForm.
+   ====================================================== */
+@media (min-width: 992px) {
+    .detail-form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 1.5rem;
+    }
+
+    /* Los campos largos (textarea y valoración por estrellas)
+       ocupan la fila completa para no quedar estrechos. */
+    .detail-form-grid > .mb-3:has(textarea),
+    .detail-form-grid > .mb-3:has(.star-rating) {
+        grid-column: 1 / -1;
+    }
+}

@@ -1,0 +1,124 @@
+/* ======================================================
+   REACT TABLE TOOLBAR - FUSIÓN SIN COSTURAS
+   ====================================================== */
+
+.react-table-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start; 
+  gap: 15px;
+  
+  /* Quitamos márgenes negativos raros que causan sub-píxeles de separación */
+  margin-bottom: 0 !important; 
+  
+  background-color: var(--card-bg) !important; 
+  padding: 16px 24px;
+  
+  /* Solo redondeamos la parte de arriba */
+  border-radius: 12px 12px 0 0; 
+  
+  /* Borde completo excepto el de abajo */
+  border: 1px solid var(--bs-border-color) !important;
+  border-bottom: none !important;
+
+  /* Eliminamos máscaras */
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  
+  /* Sombra sutil perimetral */
+  box-shadow: 0 4px 20px rgba(1, 41, 112, 0.05) !important;
+}
+
+/* Orden de la cabecera: fila 1 = título + filtros + export; fila 2 = acciones masivas */
+.toolbar-title { order: 0; }
+.toolbar-filters { order: 1; }
+.toolbar-export-buttons { order: 2; }
+
+/* 1. ACCIONES (EDICIÓN MASIVA): en su propia fila a todo el ancho, debajo */
+.toolbar-actions {
+  order: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 10px;
+  flex: 1 1 100%;
+}
+
+/* Anulamos el margen inferior de los bloques internos de edición masiva
+   (ya separa la propia fila del toolbar) para que queden alineados */
+.toolbar-actions > .mb-3 { margin-bottom: 0 !important; }
+
+/* 2. FILTROS (PEGADOS A LA DERECHA) */
+.toolbar-filters {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-left: auto;
+}
+
+/* 3. EXPORTACIÓN */
+.toolbar-export-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex: none;
+}
+
+/* Estilos de inputs y botones */
+.toolbar-filters .form-select {
+  width: auto;
+  min-width: 180px;
+  height: 40px;
+  font-size: 14px;
+  border-radius: 6px;
+  background-color: var(--bs-tertiary-bg);
+  color: var(--text-color);
+  border: 1px solid var(--bs-border-color);
+}
+
+.toolbar-btn {
+  height: 40px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.excel-btn { background-color: #28a745; color: #fff; }
+.pdf-btn { background-color: #f44336; color: #fff; }
+
+.toolbar-actions > *, .toolbar-filters > *, .toolbar-export-buttons > * {
+  margin: 0 !important;
+}
+
+@media (max-width: 992px) {
+  .react-table-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  .toolbar-filters {
+    margin-left: 0;
+    justify-content: center;
+    width: 100%;
+  }
+  /* El desplegable de filtro ocupa todo el ancho disponible en móvil */
+  .toolbar-filters .form-select {
+    width: 100%;
+    min-width: 0;
+  }
+  .toolbar-export-buttons {
+    justify-content: center;
+  }
+  /* Los bloques de edición masiva no fuerzan 300px en pantallas pequeñas */
+  .toolbar-actions > .mb-3 > div {
+    min-width: 0 !important;
+    flex: 1 1 220px;
+  }
+}

@@ -1,0 +1,230 @@
+/* Contenedor de la tabla */
+.card.recent-sales {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.card-body {
+    padding: 1rem;
+}
+
+/* Título de la tabla */
+.card-title {
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+/* Tabla base */
+table.datatable {
+    width: 100% !important;
+    border-collapse: collapse;
+    text-align: center;
+    vertical-align: middle;
+}
+
+table.datatable th,
+table.datatable td {
+    padding: 0.75rem;
+    vertical-align: middle;
+}
+
+/* Cabecera */
+table.datatable thead th {
+    background-color: #f8f9fa; /* igual que table-light */
+    color: #495057;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Filas */
+table.datatable tbody tr {
+    border-bottom: 1px solid #dee2e6;
+}
+
+table.datatable tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+/* Botones de acción */
+table.datatable button {
+    font-size: 0.875rem;
+}
+
+/* Estado (badge) */
+.badge {
+    font-size: 0.75rem;
+    padding: 0.25em 0.5em;
+}
+
+/* Contenedor superior (select + buscador) */
+.dt-layout-row:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+/* Selector "Mostrar X registros" */
+.dt-layout-row:first-child .dt-length label {
+    font-size: 0.875rem;
+}
+
+/* Buscador a la derecha */
+.dt-layout-row:first-child .dt-search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dt-layout-row:first-child .dt-search input {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+}
+
+/* Contenedor inferior info + paginación */
+.dt-layout-row:last-child {
+    display: flex;
+    justify-content: space-between; /* info izquierda, paginación derecha */
+    align-items: center;
+    margin-top: 1rem;
+}
+
+/* Info de registros */
+.dt-layout-row:last-child .dt-info {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #495057;
+}
+
+/* Paginación */
+.dt-layout-row:last-child .dt-paging {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.25rem;
+}
+
+.dt-paging-button {
+    background-color: transparent;
+    border: 1px solid #dee2e6;
+    color: #495057;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+}
+
+.dt-paging-button.current {
+    background-color: #0d6efd;
+    color: white;
+    border-color: #0d6efd;
+}
+
+.dt-paging-button:hover:not(.disabled):not(.current) {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+}
+
+/* Responsive Row Collapse */
+table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control::before,
+table.dataTable.dtr-inline.collapsed > tbody > tr > th.dtr-control::before {
+    background-color: #0d6efd;
+    border-radius: 50%;
+    content: '\f107'; /* icono caret */
+    font-family: 'FontAwesome';
+    display: inline-block;
+    color: white;
+    width: 1rem;
+    height: 1rem;
+    line-height: 1rem;
+    text-align: center;
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+
+/* Hacer que las columnas ocupen todo el ancho */
+table.dataTable.dtr-inline th,
+table.dataTable.dtr-inline td {
+    width: auto !important;
+    white-space: nowrap;
+}
+
+/* Selector "Mostrar X registros" estilo input */
+.dt-layout-row:first-child .dt-length select {
+    background-color: white;          /* Fondo blanco como el buscador */
+    color: #495057;                   /* Texto en gris oscuro */
+    text-align: center;               /* Texto centrado */
+    padding: 0.25rem 0.5rem;          /* Mismo padding que el input */
+    border: 1px solid #ced4da;        /* Borde gris */
+    border-radius: 0.25rem;           /* Bordes redondeados */
+    font-size: 0.875rem;              /* Tamaño de letra */
+    appearance: none;                  /* Elimina flecha por defecto en algunos navegadores */
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+/* Opcional: añadir una flecha personalizada centrada a la derecha */
+.dt-layout-row:first-child .dt-length {
+    position: relative;
+    display: inline-block;
+}
+
+.dt-layout-row:first-child .dt-length select::after {
+    content: '▾';
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #495057;
+}
+
+/* Row Collapse con FontAwesome */
+/* Solo mostrar el icono de Row Collapse en pantallas móviles */
+@media (max-width: 767.98px) { /* Breakpoint típico de móviles */
+    table.dataTable.dtr-inline tbody td.dtr-control::before {
+        content: "\f054"; /* Chevron-right por defecto */
+        font-family: "Font Awesome 6 Free"; /* FontAwesome */
+        font-weight: 900; /* necesario para solid */
+        font-size: 0.9em;
+        margin-right: 0.5em;
+        color: #0d6efd;
+        cursor: pointer;
+    }
+
+    table.dataTable.dtr-inline tbody tr.parent td.dtr-control::before {
+        content: "\f078"; /* Chevron-down cuando está expandido */
+    }
+}
+
+/* En pantallas mayores no mostrar nada */
+@media (min-width: 768px) {
+    table.dataTable.dtr-inline tbody td.dtr-control::before {
+        content: none !important;
+    }
+}
+
+
+/* Reducir botones de paginación solo en móviles (Row Collapse) */
+@media (max-width: 767.98px) {
+  .dataTables_wrapper .dt-paging .dt-paging-button {
+    padding: 0.25rem 0.5rem;  /* más pequeño */
+    font-size: 0.25rem;       /* más pequeño */
+    min-width: 1.5rem;        /* ancho mínimo */
+    max-width: 2.5rem;        /* ancho máximo para forzar reducción */
+    white-space: nowrap;       /* evitar salto de línea */
+  }
+}
+
+
+
+.generic-checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #0d6efd; /* azul Bootstrap */
+  transform: translateY(2px); /* alineación fina con texto */
+}

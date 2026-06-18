@@ -1,0 +1,27 @@
+/* app.css: importa todos los módulos */
+@import './variables.css';
+@import './layout.css';
+@import './buttons.css';
+@import './cards.css';
+@import './tables.css';
+@import './dropdowns.css';
+@import './modals.css';
+@import './forms.css';
+@import './animations.css';
+@import './auth.css';
+@import './logo.css';
+
+/* Reset general */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--text-color);
+  background: var(--bgcolor);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  scroll-behavior: smooth;
+}

@@ -1,0 +1,23 @@
+/* Colores modo claro */
+:root {
+  --primary: #030833;
+  --second: #717ff5;
+  --bgcolor: #f6f9ff;
+  --text-color: #444;
+  --card-bg: #ffffff;
+  --header-bg: #ffffff;
+  --sidebar-bg: #ffffff;
+  --text-muted: #6c757d;
+  --bs-border-color: #dee2e6;
+}
+
+/* Colores modo oscuro */
+[data-bs-theme='dark'] {
+  --bgcolor: #1a1e2e;
+  --text-color: #f8f9fa;
+  --card-bg: #2a3042;
+  --header-bg: #2a3042;
+  --sidebar-bg: #2a3042;
+  --text-muted: #8a94a8;
+  --bs-border-color: #3a4055;
+}

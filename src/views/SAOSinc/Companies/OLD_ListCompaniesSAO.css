@@ -1,0 +1,19 @@
+.status-label {
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: white;
+    cursor: pointer; /* mano al pasar */
+    display: inline-block;
+    font-weight: 600;
+}
+
+/* Verde estilo GitHub */
+.label-new {
+    background-color: #28a745;
+}
+
+/* Naranja estilo GitHub labels */
+.label-updated {
+    background-color: #f66a0a;
+}

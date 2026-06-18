@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+/* ---------------------------------
+# General
+--------------------------------- */
+:root {
+  scroll-behavior: smooth;
+  --primary: #4154f1;
+  --second: #717ff5;
+  --bgColor: #f6f9ff;
+  --textColor: #444444;
+  --cardBg: #fff;
+  --cardBorder: #ebeef4;
+  --cardTitle: #012970;
+  --cardTitleSpan: #899bbd;
+  --cardFooterText: #798eb3;
+  --cardShadow: rgba(1, 41, 112, 0.1);
+  --dropdownDivider: #a5c5fe;
+  --dropdownText: #444444;
+  --dropdownArrow: #fff;
+  --dropdownArrowBorder: #eaedf1;
+  --cardOverlay: rgba(255, 255, 255, 0.6);
+  --iconCardBgSales: #f6f6fe;
+  --iconCardBgRevenue: #e0f8e9;
+  --iconCardBgCustomers: #ffecdf;
+  --iconCardColorRevenue: #2eca6a;
+  --iconCardColorCustomers: #ff771d;
+  --infoCardTitle: #012970;
+  --filterIcon: #aab7cf;
+  --footerBorder: #cddfff;
+  --footerText: #012970;
+  --headerBg: #fff;
+  --headerShadow: rgba(1, 41, 112, 0.1);
+  --headerText: #012970;
+  --navIconColor: #012970;
+  --subtleText: #919191;
+  --headingColor: #012970;
+  --subtleText: #777777;
+  --timelineLineColor: #eceefe;
+  --badgeBorder: #fff;
+  --headingColor: #012970;
+  --inputBorder: rgba(1, 41, 112, 0.2);
+  --inputBorderHover: rgba(1, 41, 112, 0.3);
+  --inputShadowHover: rgba(1, 41, 112, 0.15);
+  --cardBackground: white;
+  --tableHeaderBg: #f6f6fe;
+  --cardBackground: #fff;
+  --shadowColor: rgba(1, 41, 112, 0.1);
+  --scrollbarThumb: #aab7cf;
+  --mutedText: #899bbd;
+  --headingColor: #012970;
+  --cardLightBg: #f4f4f4;
+  --cardTextColor: #000000;
+  --textMuted: #6c757d;
+  --textStrong: #000000;
+}
+
+[data-theme="dark"] {
+  --primary: #4154f1;
+  --second: #717ff5;
+  --bgColor: #282c34;
+  --textColor: #f6f9ff;
+  --cardBg: #1f1f1f;
+  --cardBorder: #383c44;
+  --cardTitle: #8da9ff;
+  --cardTitleSpan: #a8b4d4;
+  --cardFooterText: #a0aeca;
+  --cardShadow: rgba(0, 0, 0, 0.4);
+  --dropdownDivider: #445caa;
+  --dropdownText: #dcdcdc;
+  --dropdownArrow: #2b2b2b;
+  --dropdownArrowBorder: #3c3f4a;
+  --cardOverlay: rgba(40, 44, 52, 0.5);
+  --iconCardBgSales: #2f3244;
+  --iconCardBgRevenue: #2e4035;
+  --iconCardBgCustomers: #453528;
+  --iconCardColorRevenue: #5efc9d;
+  --iconCardColorCustomers: #ff9942;
+  --infoCardTitle: #aebcf2;
+  --filterIcon: #c0c8dc;
+  --footerBorder: #445165;
+  --footerText: #d4dcff;
+  --headerBg: #1e1e2f;
+  --headerShadow: rgba(0, 0, 0, 0.6);
+  --headerText: #e0e8ff;
+  --navIconColor: #d0d8ff;
+  --subtleText: #b0b0b0;
+  --headingColor: #d0d8ff;
+  --subtleText: #b0b0b0;
+  --timelineLineColor: #444b66;
+  --badgeBorder: #1e1e2f;
+  --headingColor: #d0d8ff;
+  --inputBorder: rgba(255, 255, 255, 0.2);
+  --inputBorderHover: rgba(255, 255, 255, 0.3);
+  --inputShadowHover: rgba(255, 255, 255, 0.15);
+  --cardBackground: #1f1f2b;
+  --tableHeaderBg: #2c2c3a;
+  --cardBackground: #1f1f2b;
+  --shadowColor: rgba(0, 0, 0, 0.5);
+  --scrollbarThumb: #5c6a89;
+  --mutedText: #a4b0d0;
+  --headingColor: #d0d8ff;
+  --cardLightBg: #2c2c3a;
+  --cardTextColor: #f0f0f0;
+  --textMuted: #b0b0b0;
+  --textStrong: #ffffff;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--textColor);
+  background: var(--bgColor);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  color: var(--second);
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Nunito', sans-serif;
+}
+
+/*------------------------------------------------------------------
+# Override some default Bootstrap stylings
+------------------------------------------------------------------*/
+
+/* Dropdown menus */
+.dropdown-menu {
+  border-radius: 4px;
+  padding: 10px 0;
+  -webkit-animation-name: dropdown-animate;
+  animation-name: dropdown-animate;
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  border: 0;
+  box-shadow: 0 5px 30px 0 rgba(82, 63, 105, 0.2);
+}
+
+.dropdown-menu .dropdown-header,
+.dropdown-menu .dropdown-footer {
+  text-align: center;
+  font-size: 15px;
+  padding: 10px 25px;
+}
+
+.dropdown-menu .dropdown-footer a {
+  color: var(--dropdownText);
+  text-decoration: underline;
+}
+
+.dropdown-menu .dropdown-footer a:hover {
+  text-decoration: none;
+}
+
+.dropdown-menu .dropdown-divider {
+  color: var(--dropdownDivider);
+  margin: 0;
+}
+
+.dropdown-menu .dropdown-item {
+  font-size: 14px;
+  padding: 10px 15px;
+  transition: 0.3s;
+}
+
+.dropdown-menu .dropdown-item i {
+  margin-right: 10px;
+  font-size: 18px;
+  line-height: 0;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #f6f9ff;/*var(--bgColor);*/
+}
+
+@media (min-width: 768px) {
+  .dropdown-menu-arrow::before {
+    content: '';
+    width: 13px;
+    height: 13px;
+    background: var(--dropdownArrow);
+    position: absolute;
+    top: -7px;
+    right: 20px;
+    transform: rotate(45deg);
+    border-top: 1px solid var(--dropdownArrowBorder);
+    border-left: 1px solid var(--dropdownArrowBorder);
+  }
+}
+
+@-webkit-keyframes dropdown-animate {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+
+  0% {
+    opacity: 0;
+  }
+}
+
+@keyframes dropdown-animate {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+
+  0% {
+    opacity: 0;
+  }
+}
+
+/* Card */
+.card {
+  margin-bottom: 30px;
+  border: none;
+  box-shadow: 0 0 30px rgba(1, 41, 112, 0.1);
+  border-radius: 5px;
+}
+
+.card-header,
+.card-footer {
+  border-color: var(--cardBorder);
+  background-color: var(--cardBg);
+  color: var(--cardFooterText);
+  padding: 15px;
+}
+
+.card-title {
+  padding: 20px 0 15px 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: #012970;
+  letter-spacing: 1px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.card-title span {
+  color: var(--cardTitleSpan);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.card-body {
+  padding: 0 20px 20px 20px;
+}
+
+.card-img-overlay {
+  background-color: var(--cardOverlay);
+}
+
+.card-body,
+.info-card,
+.sales-card {
+  background-color: var(--cardLightBg);
+  color: var(--cardTextColor);
+}
+
+th,
+td {
+  background-color: var(--cardLightBg) !important;
+  color: var(--cardTextColor) !important;
+}
+
+.text-muted {
+  color: var(--textMuted) !important;
+}
+
+.apexcharts-legend-text,
+.apexcharts-legend-text tspan,
+tspan {
+  fill: var(--textMuted) !important;
+  color: var(--textMuted) !important;
+}
+
+.card-title,
+th {
+  color: var(--textStrong);
+}
+
+
+
+

@@ -1,0 +1,94 @@
+/*------------------------------------------------------------------
+# Logo PRO estilo SaaS / Apple
+------------------------------------------------------------------*/
+
+.logo {
+    line-height: 1;
+    display: flex;
+    align-items: center;
+}
+
+@media (min-width: 1200px) {
+    .logo {
+        width: 280px;
+    }
+}
+
+.logo img {
+    max-height: 26px;
+    margin-right: 6px;
+}
+
+/* =========================
+   TEXTO LOGO
+========================= */
+
+.logo-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: "Inter", "Nunito", "Segoe UI", sans-serif;
+    letter-spacing: 0.3px;
+}
+
+/* F.E. */
+
+.logo-main {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--headerText);
+}
+
+/* Manager → más fuerte y pro */
+
+.logo-accent {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+/* Badge curso */
+
+.logo-badge {
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 500;
+    margin-left: 6px;
+}
+
+.logo:hover .logo-accent {
+    transform: translateY(-1px);
+    transition: all 0.2s ease;
+}
+
+.logo:hover .logo-badge {
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+}
+
+.logo {
+    text-decoration: none !important;
+}
+
+.logo * {
+    text-decoration: none !important;
+}
+
+/* =========================
+   DARK MODE
+========================= */
+
+[data-bs-theme="dark"] .logo-main {
+    color: var(--text-color);
+}
+
+[data-bs-theme="dark"] .logo-accent {
+    color: var(--second);
+}
+
+[data-bs-theme="dark"] .logo-badge {
+    background: var(--second);
+}
